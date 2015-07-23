@@ -21,7 +21,7 @@
 include device/samsung/bcm21553-common/BoardConfigCommon.mk
 
 # Board
-TARGET_BOARD_PLATFORM				:= bcm21553
+TARGET_BOARD_PLATFORM				    := bcm21553
 TARGET_BOOTLOADER_BOARD_NAME			:= cooperve
 
 # Recovery
@@ -29,10 +29,14 @@ BOARD_BOOTIMAGE_PARTITION_SIZE			:= 7357568
 BOARD_RECOVERYIMAGE_PARTITION_SIZE		:= 7357568
 BOARD_SYSTEMIMAGE_PARTITION_SIZE		:= 241172480
 BOARD_USERDATAIMAGE_PARTITION_SIZE		:= 206831616
-#BOARD_LDPI_RECOVERY				:= true
+#BOARD_LDPI_RECOVERY					:= true
 
-# Kernel config
+# Prebuilt kernel NOTE: Delete from package
 TARGET_KERNEL_CONFIG				:= cyanogenmod_cooperve_defconfig
-
-# OTA override
+ 
+#Kernel defines
+BOARD_KERNEL_BASE					:= 0x81600000
+BOARD_MKBOOTIMG_ARGS				:= --ramdisk_offset 0x01000000
 TARGET_OTA_ASSERT_DEVICE			:= cooperve,GT-S5830i,gt-s5830i
+
+

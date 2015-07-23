@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Init files
+PRODUCT_COPY_FILES += \
+    device/samsung/bcm21553-common/ramdisk/init.gt-s5830iboard.sensors.rc:root/init.gt-s5830iboard.sensors.rc
+
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml
@@ -29,9 +33,21 @@ PRODUCT_PACKAGES += \
 PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 
+$(call inherit-product, device/mdpi-common/mdpi.mk)
+
 # Inherit products
 $(call inherit-product, device/samsung/bcm21553-common/common.mk)
 $(call inherit-product, vendor/samsung/cooperve/vendor.mk)
 
 # Add device package overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/cooperve/overlay
+
+# Prebuilt Kernel - DELETE from the package
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+    LOCAL_KERNEL := device/samsung/cooperve/prebuilt/kernel
+else
+    LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
