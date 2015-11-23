@@ -12,14 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Init files
-PRODUCT_COPY_FILES += \
-    device/samsung/bcm21553-common/ramdisk/init.bcm21553.sensors.rc:root/init.bcm21553.sensors.rc
-
-# These are the hardware-specific features
-PRODUCT_COPY_FILES += \
-    frameworks/base/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml
-
 # Enable repeatable keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.enable_key_repeat=true \
